@@ -1,38 +1,48 @@
-import java.util.*;
-import java.lang.*;
 import java.io.*;
 
 class Codechef {
-    public static void main(String[] args) throws java.lang.Exception {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedInputStream in = new BufferedInputStream(System.in);
+        PrintWriter out = new PrintWriter(System.out);
 
-        int T = sc.nextInt();
+        int T = nextInt(in);
 
         while (T-- > 0) {
-            int X = sc.nextInt();
-            int Y = sc.nextInt();
-            int K = sc.nextInt();
-            int N = sc.nextInt();
+            int X = nextInt(in);
+            int Y = nextInt(in);
+            int K = nextInt(in);
+            int N = nextInt(in);
 
             int needed = X - Y;
             boolean found = false;
 
             for (int i = 0; i < N; i++) {
-                int P = sc.nextInt();
-                int C = sc.nextInt();
+                int P = nextInt(in);
+                int C = nextInt(in);
 
                 if (P >= needed && C <= K) {
                     found = true;
                 }
             }
 
-            if (found) {
-                System.out.println("LuckyChef");
-            } else {
-                System.out.println("UnluckyChef");
-            }
+            out.println(found ? "LuckyChef" : "UnluckyChef");
         }
 
-        sc.close();
+        out.flush();
+    }
+
+    static int nextInt(BufferedInputStream in) throws IOException {
+        int c;
+        do {
+            c = in.read();
+        } while (c <= ' ' && c != -1);
+
+        int num = 0;
+        while (c > ' ') {
+            num = num * 10 + c - '0';
+            c = in.read();
+        }
+
+        return num;
     }
 }
